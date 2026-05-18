@@ -12,7 +12,7 @@ import {
 import { LinearGradient } from "expo-linear-gradient";
 
 const ProfileScreen = ({ navigation }) => {
-  const [name, setName] = useState("Shankar");
+  const [name, setName] = useState("Aditya soni");
   const [mobile, setMobile] = useState("9876543210");
   const [village, setVillage] = useState("Vijayapura");
   const [profileType, setProfileType] = useState("Individual");

@@ -31,55 +31,60 @@ const LoginScreen = ({ navigation }) => {
         resizeMode="cover"
       >
         <LinearGradient
-          colors={["rgba(3,10,6,0.25)", "rgba(4,17,8,0.55)", "rgba(2,8,4,0.96)"]}
+          colors={["rgba(3,10,6,0.22)", "rgba(4,17,8,0.72)", "rgba(2,8,4,0.96)"]}
           style={styles.gradient}
         >
           <StatusBar barStyle="light-content" translucent backgroundColor="transparent" />
 
-      <View style={styles.logoRow}>
-        <Image
-          source={require("../../assets/Images/logo/iconpngplain.png")}
-          style={styles.logo}
-          resizeMode="contain"
-        />
-        <View>
-          <Text style={styles.brand}>KisanSahakar</Text>
-          <Text style={styles.brandSub}>Gig Worker App</Text>
-        </View>
-      </View>
+          <View style={styles.topSection}>
+            <View style={styles.logoRow}>
+              <Image
+                source={require("../../assets/Images/logo/iconpngplain.png")}
+                style={styles.logo}
+                resizeMode="contain"
+              />
+              <View>
+                <Text style={styles.brand}>KisanSahakar</Text>
+                <Text style={styles.brandSub}>Worker onboarding</Text>
+              </View>
+            </View>
+            <Text style={styles.heroTitle}>Sign in with your mobile</Text>
+            <Text style={styles.heroSubtitle}>Secure access to work, KYC, and nearby farm requests.</Text>
+          </View>
 
-      <View style={styles.card}>
-        <Text style={styles.kicker}>Secure login</Text>
-        <Text style={styles.title}>Enter your mobile number</Text>
-        <Text style={styles.copy}>
-          We will send an OTP to verify your worker profile and continue your KYC.
-        </Text>
+          <View style={styles.bottomCard}>
+            <View style={styles.dragHandle} />
+            <Text style={styles.kicker}>Secure login</Text>
+            <Text style={styles.title}>Enter mobile number</Text>
+            <Text style={styles.copy}>
+              We’ll send a one-time code to your phone to access the dashboard.
+            </Text>
 
-        <Text style={styles.label}>Mobile number</Text>
-        <View style={styles.inputWrap}>
-          <Text style={styles.country}>+91</Text>
-          <TextInput
-            keyboardType="number-pad"
-            value={mobile}
-            onChangeText={setMobile}
-            maxLength={10}
-            placeholder="10 digit number"
-            placeholderTextColor="#8BA394"
-            style={styles.input}
-          />
-        </View>
+            <Text style={styles.label}>Mobile number</Text>
+            <View style={styles.inputWrap}>
+              <Text style={styles.country}>+91</Text>
+              <TextInput
+                keyboardType="number-pad"
+                value={mobile}
+                onChangeText={setMobile}
+                maxLength={10}
+                placeholder="Enter 10 digit number"
+                placeholderTextColor="#8BA394"
+                style={styles.input}
+              />
+            </View>
 
-        <TouchableOpacity activeOpacity={0.86} style={styles.button} onPress={handleSendOtp}>
-          <Text style={styles.buttonText}>Send OTP</Text>
-        </TouchableOpacity>
+            <TouchableOpacity activeOpacity={0.86} style={styles.button} onPress={handleSendOtp}>
+              <Text style={styles.buttonText}>Send OTP</Text>
+            </TouchableOpacity>
 
-        <View style={styles.noteBox}>
-          <Text style={styles.noteTitle}>Demo OTP</Text>
-          <Text style={styles.noteText}>Use 1234 on the next screen.</Text>
-        </View>
-      </View>
-      </LinearGradient>
-    </ImageBackground>
+            {/* <View style={styles.noteBox}>
+              <Text style={styles.noteTitle}>Demo OTP</Text>
+              <Text style={styles.noteText}>Use 1234 on the next screen.</Text>
+            </View> */}
+          </View>
+        </LinearGradient>
+      </ImageBackground>
     </View>
   );
 };
@@ -90,13 +95,18 @@ const styles = StyleSheet.create({
   },
   gradient: {
     flex: 1,
-    paddingHorizontal: 22,
+    // paddingHorizontal: 22,
     paddingTop: 64,
+    justifyContent: "space-between",
+  },
+  topSection: {
+    marginBottom: 10,
   },
   logoRow: {
     flexDirection: "row",
     alignItems: "center",
     gap: 12,
+    marginBottom: 20,
   },
   logo: {
     width: 54,
@@ -113,60 +123,80 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     marginTop: 2,
   },
-  card: {
-    marginTop: 46,
-    padding: 22,
-    borderRadius: 24,
+  heroTitle: {
+    color: "#FFFFFF",
+    fontSize: 34,
+    fontWeight: "900",
+    lineHeight: 42,
+    marginBottom: 10,
+  },
+  heroSubtitle: {
+    color: "#CDEBD2",
+    fontSize: 15,
+    lineHeight: 22,
+    maxWidth: "85%",
+  },
+  bottomCard: {
     backgroundColor: "#FFFFFF",
-    borderWidth: 1,
-    borderColor: "#E4F4E8",
+    borderRadius: 32,
+    padding: 24,
     shadowColor: "#000000",
-    shadowOpacity: 0.3,
-    shadowRadius: 18,
-    shadowOffset: { width: 0, height: 10 },
-    elevation: 10,
+    shadowOpacity: 0.14,
+    shadowRadius: 24,
+    shadowOffset: { width: 0, height: 12 },
+    elevation: 12,
+  },
+  dragHandle: {
+    width: 72,
+    height: 5,
+    borderRadius: 999,
+    backgroundColor: "#E5F7EA",
+    alignSelf: "center",
+    marginBottom: 18,
   },
   kicker: {
     color: "#15803D",
-    fontSize: 13,
+    fontSize: 12,
     fontWeight: "900",
     textTransform: "uppercase",
+    letterSpacing: 1,
+    marginBottom: 8,
   },
   title: {
     color: "#102A18",
-    fontSize: 30,
-    lineHeight: 36,
+    fontSize: 28,
+    lineHeight: 34,
     fontWeight: "900",
-    marginTop: 10,
+    marginBottom: 10,
   },
   copy: {
-    color: "#5D7666",
+    color: "#607769",
     fontSize: 15,
     lineHeight: 22,
-    marginTop: 10,
+    marginBottom: 24,
   },
   label: {
-    color: "#173D23",
+    color: "#102A18",
     fontSize: 13,
     fontWeight: "900",
-    marginTop: 28,
-    marginBottom: 8,
+    marginBottom: 12,
   },
   inputWrap: {
     minHeight: 58,
-    borderRadius: 18,
+    borderRadius: 20,
     borderWidth: 1,
-    borderColor: "#CFE8D5",
+    borderColor: "#D1E8D4",
     backgroundColor: "#F8FFFA",
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: 14,
+    paddingHorizontal: 16,
+    marginBottom: 20,
   },
   country: {
-    color: "#173D23",
+    color: "#102A18",
     fontSize: 16,
     fontWeight: "900",
-    marginRight: 10,
+    marginRight: 12,
   },
   input: {
     flex: 1,
@@ -176,11 +206,11 @@ const styles = StyleSheet.create({
   },
   button: {
     minHeight: 58,
-    borderRadius: 18,
+    borderRadius: 20,
     backgroundColor: "#16A34A",
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 22,
+    marginTop: 6,
   },
   buttonText: {
     color: "#FFFFFF",
@@ -188,10 +218,12 @@ const styles = StyleSheet.create({
     fontWeight: "900",
   },
   noteBox: {
-    marginTop: 18,
-    padding: 14,
-    borderRadius: 16,
-    backgroundColor: "#F0FDF4",
+    marginTop: 20,
+    padding: 16,
+    borderRadius: 18,
+    backgroundColor: "#ECFDF5",
+    borderWidth: 1,
+    borderColor: "#D1E8D4",
   },
   noteTitle: {
     color: "#166534",
@@ -199,9 +231,9 @@ const styles = StyleSheet.create({
     fontWeight: "900",
   },
   noteText: {
-    color: "#3F5F49",
+    color: "#166534",
     fontSize: 13,
-    marginTop: 4,
+    marginTop: 6,
   },
 });
 

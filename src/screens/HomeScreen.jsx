@@ -93,7 +93,7 @@ const HomeScreen = ({ navigation }) => {
         </View>
 
         <View style={styles.greetingSection}>
-          <Text style={styles.greeting}>Namaste, Shankar</Text>
+          <Text style={styles.greeting}>Namaste, Aditya soni</Text>
           <Text style={styles.role}>Verified gig worker near Vijayapura</Text>
         </View>
 

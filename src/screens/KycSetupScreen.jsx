@@ -52,7 +52,7 @@ const KycSetupScreen = ({ navigation }) => {
 
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.content}>
         <View style={styles.greetingSection}>
-          <Text style={styles.greeting}>Welcome, Shankar</Text>
+          <Text style={styles.greeting}>Welcome, Aditya soni</Text>
           <Text style={styles.role}>Complete your KYC to start accepting farm work</Text>
         </View>
 
