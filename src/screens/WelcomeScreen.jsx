@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -12,6 +12,8 @@ import { LinearGradient } from "expo-linear-gradient";
 import Animated, { FadeInDown, FadeInUp } from "react-native-reanimated";
 
 const WelcomeScreen = ({ navigation }) => {
+  const [language, setLanguage] = useState("English");
+  const languageOptions = ["English", "Hindi", "Telugu", "Kannada"];
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" translucent backgroundColor="transparent" />
@@ -25,12 +27,16 @@ const WelcomeScreen = ({ navigation }) => {
           colors={["rgba(3,10,6,0.25)", "rgba(4,17,8,0.55)", "rgba(2,8,4,0.96)"]}
           style={styles.gradient}
         >
-          <Animated.View entering={FadeInUp.duration(800).springify()} style={styles.logoWrap}>
+          <Animated.View entering={FadeInUp.duration(800).springify()} style={styles.logoRow}>
             <Image
-              source={require("../../assets/Images/logo/sitelogo2.png")}
-              style={styles.logo}
+              source={require("../../assets/Images/logo/iconpngplain.png")}
+              style={styles.logoIcon}
               resizeMode="contain"
             />
+            <View>
+              <Text style={styles.brand}>KisanSahakar</Text>
+              <Text style={styles.brandSub}>Digital Companion</Text>
+            </View>
           </Animated.View>
 
           <View style={styles.content}>
@@ -42,6 +48,32 @@ const WelcomeScreen = ({ navigation }) => {
               <Text style={styles.description}>
                 Manage crops, check market updates, connect with support, and make better farm decisions from one simple app.
               </Text>
+              <View style={styles.languageSection}>
+                <Text style={styles.languageHeading}>Choose language</Text>
+                <View style={styles.languageOptions}>
+                  {languageOptions.map((option) => (
+                    <TouchableOpacity
+                      key={option}
+                      activeOpacity={0.8}
+                      style={[
+                        styles.languageOption,
+                        language === option && styles.languageOptionActive,
+                      ]}
+                      onPress={() => setLanguage(option)}
+                    >
+                      <Text
+                        style={
+                          language === option
+                            ? styles.languageOptionTextActive
+                            : styles.languageOptionText
+                        }
+                      >
+                        {option}
+                      </Text>
+                    </TouchableOpacity>
+                  ))}
+                </View>
+              </View>
             </Animated.View>
 
             <Animated.View
@@ -55,7 +87,7 @@ const WelcomeScreen = ({ navigation }) => {
                 <Text style={styles.featureText}>Market rates</Text>
               </View>
               <View style={styles.featurePill}>
-                <Text style={styles.featureText}>Farmer support</Text>
+                <Text style={styles.featureText}>Farmer supp.</Text>
               </View>
             </Animated.View>
 
@@ -120,24 +152,25 @@ const styles = StyleSheet.create({
     paddingTop: 64,
     paddingBottom: 34,
   },
-  logoWrap: {
-    width: 86,
-    height: 86,
+  logoRow: {
+    flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 28,
-    backgroundColor: "rgba(255,255,255,0.92)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.55)",
-    shadowColor: "#000",
-    shadowOpacity: 0.28,
-    shadowRadius: 14,
-    shadowOffset: { width: 0, height: 8 },
-    elevation: 8,
+    gap: 12,
   },
-  logo: {
-    width: 64,
-    height: 64,
+  logoIcon: {
+    width: 54,
+    height: 54,
+  },
+  brand: {
+    color: "#FFFFFF",
+    fontSize: 22,
+    fontWeight: "900",
+  },
+  brandSub: {
+    color: "#D4EDD9",
+    fontSize: 13,
+    fontWeight: "700",
+    marginTop: 2,
   },
   content: {
     width: "100%",
@@ -186,6 +219,42 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,0.22)",
   },
   featureText: {
+    color: "#FFFFFF",
+    fontSize: 13,
+    fontWeight: "700",
+  },
+  languageSection: {
+    marginTop: 18,
+  },
+  languageHeading: {
+    color: "#D7F8D7",
+    fontSize: 14,
+    fontWeight: "700",
+    marginBottom: 10,
+  },
+  languageOptions: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 10,
+  },
+  languageOption: {
+    paddingVertical: 10,
+    paddingHorizontal: 14,
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.24)",
+    backgroundColor: "rgba(255,255,255,0.08)",
+  },
+  languageOptionActive: {
+    borderColor: "#86EFAC",
+    backgroundColor: "rgba(134,239,172,0.18)",
+  },
+  languageOptionText: {
+    color: "#D7F8D7",
+    fontSize: 13,
+    fontWeight: "700",
+  },
+  languageOptionTextActive: {
     color: "#FFFFFF",
     fontSize: 13,
     fontWeight: "700",
